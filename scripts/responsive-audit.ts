@@ -28,8 +28,8 @@ async function audit() {
     }
   });
 
-  page.on("pageerror", (err) => {
-    consoleErrors.push(err.toString());
+  page.on("pageerror", (err: unknown) => {
+    consoleErrors.push(err instanceof Error ? err.message : String(err));
   });
 
   console.log("=== STARTING COMPREHENSIVE RESPONSIVE AUDIT ===");

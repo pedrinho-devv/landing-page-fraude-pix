@@ -31,8 +31,8 @@ export function PrimaryLink({
     }
 
     // Smooth focus if targeting anchor
-    if (href.startsWith("#")) {
-      const targetId = href.substring(1);
+    if (href.startsWith("#") || href.startsWith("/#")) {
+      const targetId = href.replace(/^\/?#/, "");
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         // Allow default anchor navigation or enhanced focus

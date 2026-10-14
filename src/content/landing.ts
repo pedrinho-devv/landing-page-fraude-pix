@@ -20,7 +20,7 @@ export const landingContent = {
   header: {
     brandName: "Dr. Ronney Menezes",
     ctaLabel: "Solicitar análise",
-    ctaHref: "#analise",
+    ctaHref: "/#analise",
   },
   hero: {
     label: "ANÁLISE JURÍDICA DE FRAUDES BANCÁRIAS",
@@ -143,13 +143,17 @@ export const landingContent = {
     description:
       "Atendimento jurídico voltado à análise de fraudes bancárias envolvendo empresas e empresários.",
     location: "Teresina – PI",
+    whatsapp: {
+      rawNumber: "5586981572651",
+      displayNumber: "(86) 98157-2651",
+    },
   },
   form: {
     sectionId: "analise",
     label: "SOLICITAÇÃO DE CONTATO",
     title: "Solicite a análise jurídica do seu caso.",
     support:
-      "Informe seus dados de contato e responda a três perguntas sobre a situação da empresa. A equipe utilizará essas informações para avaliar os próximos passos do atendimento.",
+      "Informe seus dados de contato e responda a três perguntas sobre a situação da empresa. Ao enviar, você será direcionado para o WhatsApp com os dados estruturados para atendimento.",
     fields: {
       fullName: {
         label: "Nome completo",
@@ -198,8 +202,10 @@ export const landingContent = {
     },
     privacyNotice:
       "Usaremos as informações para responder à sua solicitação, conforme a Política de Privacidade.",
-    submitButton: "Enviar solicitação de análise",
-    submittingButton: "Enviando solicitação…",
+    submitButton: "Enviar e abrir no WhatsApp",
+    submittingButton: "Preparando mensagem…",
+    whatsappRedirectNote:
+      "Ao clicar, seus dados serão organizados e você será direcionado para o WhatsApp oficial do Dr. Ronney Menezes (86 98157-2651).",
     successMessage:
       "Solicitação recebida. A equipe poderá entrar em contato pelo canal informado para orientar os próximos passos. O envio não constitui contratação nem garante a viabilidade do caso.",
     errorMessage:
@@ -215,5 +221,53 @@ export const landingContent = {
       { label: "Política de Privacidade", href: "/privacidade" },
       { label: "Termos de Uso", href: "/termos" },
     ],
+  },
+  obrigado: {
+    meta: {
+      title: "Solicitação Recebida com Sucesso | Dr. Ronney Menezes",
+      description:
+        "Sua solicitação de análise jurídica foi enviada com sucesso. Confira as orientações e os próximos passos do atendimento.",
+    },
+    badge: "SOLICITAÇÃO ENVIADA COM SUCESSO",
+    title: "Obrigado! Recebemos sua solicitação.",
+    subtitle:
+      "Nossa equipe jurídica iniciará a triagem técnica das informações fornecidas para avaliar a viabilidade de atuação para o seu caso.",
+    stepsTitle: "O que acontece agora?",
+    steps: [
+      {
+        number: "01",
+        title: "Triagem técnica das informações",
+        description:
+          "Examinamos os dados informados sobre a empresa, faixa de prejuízo e histórico da transação sob as normas bancárias e entendimentos vigentes.",
+      },
+      {
+        number: "02",
+        title: "Contato da equipe jurídica",
+        description:
+          "Um membro da equipe entrará em contato pelo telefone ou WhatsApp informado em horário comercial para orientar sobre o enquadramento do caso.",
+      },
+      {
+        number: "03",
+        title: "Separação de provas e documentos",
+        description:
+          "Caso o caso apresente viabilidade inicial, você receberá orientações específicas sobre como reunir e organizar comprovantes, protocolos e boletins.",
+      },
+    ],
+    documentsSection: {
+      title: "Documentos que você já pode deixar organizados:",
+      items: [
+        "Comprovantes de transferência do Pix contendo o ID da transação (End-to-End ID) e chaves utilizadas.",
+        "Boletim de Ocorrência policial detalhado com a narrativa exata do ocorrido.",
+        "Protocolos de atendimento e registros de contestação junto ao banco de origem e de destino (MED).",
+        "Extrato bancário da conta empresarial comprovando o débito e o saldo do período.",
+      ],
+    },
+    urgentNotice: {
+      title: "Atenção: A fraude acabou de acontecer?",
+      text: "Se a ocorrência for recente e sua empresa ainda não comunicou a instituição bancária, não aguarde o retorno da equipe: acione imediatamente os canais oficiais do seu banco para registrar a contestação e solicitar o Mecanismo Especial de Devolução (MED). Guarde todos os números de protocolo.",
+    },
+    disclaimer:
+      "O envio deste formulário constitui solicitação prévia de triagem técnica e não configura relação contratual automática de prestação de serviços advocatícios, procuração ou garantia de recuperação de valores. Os dados informados são tratados sob sigilo profissional e nos termos da Lei Geral de Proteção de Dados (LGPD).",
+    backButton: "Voltar para a página inicial",
   },
 };

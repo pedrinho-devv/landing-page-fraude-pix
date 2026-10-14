@@ -10,6 +10,7 @@ export type AnalyticsEvent =
   | { name: "form_submit_attempt" }
   | { name: "form_submit_success" }
   | { name: "form_submit_error"; properties: { category: "validation" | "network" | "server" | "rate_limit" } }
+  | { name: "thank_you_page_view" }
   | { name: "video_play" };
 
 export function trackEvent(event: AnalyticsEvent): void {

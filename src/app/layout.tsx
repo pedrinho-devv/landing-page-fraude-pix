@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
   },
+  other: {
+    "facebook-domain-verification": "dn2jkyx57gcp6r448gbhihxkvkrfij",
+  },
 };
 
 export default function RootLayout({
@@ -56,6 +59,10 @@ export default function RootLayout({
       className={`${barlowCondensed.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
+        <meta
+          name="facebook-domain-verification"
+          content="dn2jkyx57gcp6r448gbhihxkvkrfij"
+        />
         {/* Google Tag Manager */}
         {/* eslint-disable-next-line @next/next/next-script-for-ga */}
         <script

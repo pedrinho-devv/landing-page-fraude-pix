@@ -43,8 +43,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
   },
-  other: {
-    "facebook-domain-verification": "dn2jkyx57gcp6r448gbhihxkvkrfij",
+  verification: {
+    other: {
+      "facebook-domain-verification": ["dn2jkyx57gcp6r448gbhihxkvkrfij"],
+    },
   },
 };
 

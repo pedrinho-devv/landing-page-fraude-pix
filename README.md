@@ -2,7 +2,7 @@
 
 Aplicação web responsiva e acessível desenvolvida em **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, **Zod** e **React Hook Form** com base no PRD de análise de viabilidade de fraudes bancárias via Pix.
 
-Integrada com a identidade visual oficial do **Dr. Ronney Menezes** e rastreamento via **Google Tag Manager** (`GTM-PVFMKKVL`).
+Integrada com a identidade visual oficial do **Dr. Ronney Menezes** e rastreamento via **Google Tag Manager** (`GTM-M43QGSC9`).
 
 ---
 

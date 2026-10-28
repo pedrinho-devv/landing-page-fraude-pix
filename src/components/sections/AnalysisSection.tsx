@@ -9,7 +9,6 @@ export function AnalysisSection() {
 
   return (
     <section
-      id="analise"
       className="anchor-section py-16 sm:py-24 lg:py-28 bg-[#000044] text-[#FEFEFE] border-b border-[#FEFEFE]/10"
     >
       <Container>
@@ -48,7 +47,7 @@ export function AnalysisSection() {
           </div>
 
           {/* Right Column (Form panel) */}
-          <div className="lg:col-span-7 w-full">
+          <div id="analise" className="anchor-section lg:col-span-7 w-full">
             <Reveal delay={0.1}>
               <LeadForm />
             </Reveal>

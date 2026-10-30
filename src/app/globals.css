@@ -76,3 +76,7 @@ body {
 .anchor-section {
   scroll-margin-top: 5rem;
 }
+
+@media (max-width: 767px) {
+  body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+}

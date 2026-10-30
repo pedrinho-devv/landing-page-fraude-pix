@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createReceipt, RECEIPT_COOKIE, receiptOptions } from "@/lib/lead-receipt";
 import { leadFormSchema } from "@/lib/lead-schema";
 import {
   checkRateLimit,
@@ -79,8 +80,14 @@ export async function POST(request: NextRequest) {
     if (idempotencyKey) {
       const cached = checkIdempotency(idempotencyKey);
       if (cached) {
-        return NextResponse.json(cached, { status: 200 });
+        const response = NextResponse.json(cached, { status: 200 });
+        if (cached.leadId) response.cookies.set(RECEIPT_COOKIE, createReceipt(cached.leadId), receiptOptions);
+        return response;
       }
+    }
+
+    if (!process.env.LEAD_RECEIPT_SECRET) {
+      return NextResponse.json({ success: false, error: "O atendimento está temporariamente indisponível. Tente novamente mais tarde." }, { status: 503 });
     }
 
     // 6. Deliver to destination (CRM / Webhook / Dev mock)
@@ -98,7 +105,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         success: true,
         leadId: delivery.leadId,
@@ -107,6 +114,8 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     );
+    response.cookies.set(RECEIPT_COOKIE, createReceipt(delivery.leadId!), receiptOptions);
+    return response;
   } catch (error: unknown) {
     console.error("[API Leads Error] Unexpected error processing lead:", error);
     return NextResponse.json(

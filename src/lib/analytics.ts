@@ -11,6 +11,8 @@ export type AnalyticsEvent =
   | { name: "form_submit_success" }
   | { name: "form_submit_error"; properties: { category: "validation" | "network" | "server" | "rate_limit" } }
   | { name: "thank_you_page_view" }
+  | { name: "Lead"; properties: { event_id: string } }
+  | { name: "ClicouWhatsApp" }
   | { name: "video_play" };
 
 export function trackEvent(event: AnalyticsEvent): void {

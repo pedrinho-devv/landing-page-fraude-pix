@@ -4,7 +4,7 @@ import { AnalysisProcess } from "@/components/sections/AnalysisProcess";
 import { AudienceCriteria } from "@/components/sections/AudienceCriteria";
 import { LegalFoundations } from "@/components/sections/LegalFoundations";
 import { ProfessionalIdentity } from "@/components/sections/ProfessionalIdentity";
-import { AnalysisSection } from "@/components/sections/AnalysisSection";
+
 
 export default function Home() {
   const vslUrl = process.env.NEXT_PUBLIC_VSL_URL;
@@ -17,7 +17,7 @@ export default function Home() {
       <AudienceCriteria />
       <LegalFoundations />
       <ProfessionalIdentity />
-      <AnalysisSection />
+
     </main>
   );
 }

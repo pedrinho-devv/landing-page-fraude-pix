@@ -50,10 +50,10 @@ export default function PrivacidadePage() {
 
             <section>
               <h2 className="text-xl font-bold text-[#FABD04] mb-2 font-[family-name:var(--font-heading)]">
-                3. Não Compartilhamento e Sigilo Profissional
+                3. Envio do Formulário e Sigilo Profissional
               </h2>
               <p>
-                As informações transmitidas são tratadas sob dever de sigilo ético e profissional. Não comercializamos nem compartilhamos dados pessoais com terceiros para fins de marketing ou publicidade comportamental.
+                O formulário utiliza o Web3Forms para encaminhar os dados informados ao e-mail vinculado ao atendimento do escritório. As informações transmitidas são tratadas sob dever de sigilo ético e profissional. Não comercializamos nem compartilhamos dados pessoais com terceiros para fins de marketing ou publicidade comportamental.
               </p>
             </section>
 

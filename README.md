@@ -1,3 +1,5 @@
+> **Integração atual:** o formulário envia diretamente pelo navegador ao Web3Forms, com a chave pública fornecida pelo escritório. Não requer `LEAD_WEBHOOK_URL` nem `LEAD_RECEIPT_SECRET`. A rota `/api/leads` foi mantida como alternativa de integração e não é utilizada pelo formulário atual. Consulte `ALTERACOES.md` para os limites e validações atuais. As referências a webhook e rate limit abaixo descrevem apenas essa rota alternativa.
+
 # Landing Page: Fraude via Pix — Atendimento Jurídico (Dr. Ronney Menezes)
 
 Aplicação web responsiva e acessível desenvolvida em **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, **Zod** e **React Hook Form** com base no PRD de análise de viabilidade de fraudes bancárias via Pix.
@@ -122,8 +124,8 @@ npm run build
 
 - **Sem vazamento de PII**: A biblioteca de analytics (`src/lib/analytics.ts`) nunca envia nome, telefone, empresa ou respostas do questionário jurídico para ferramentas de terceiros.
 - **Logs mascarados**: Os logs do servidor não expõem números de telefone completos ou e-mails (`src/lib/lead-delivery.ts`).
-- **Idempotência**: O cabeçalho `x-idempotency-key` e a chave de sessão impedem cadastros duplicados acidentais.
-- **Proteção contra abuso**: Honeypot oculto contra robôs e limitação de taxa por IP.
+- **Envio no navegador**: O botão fica bloqueado durante o envio. A chave da confirmação deduplica o evento de conversão; o Web3Forms não oferece idempotência garantida neste fluxo.
+- **Proteção contra abuso**: Honeypot e proteções do Web3Forms. A limitação local por IP aplica-se somente à rota alternativa.
 
 ---
 

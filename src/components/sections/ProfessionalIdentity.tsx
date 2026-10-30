@@ -15,7 +15,7 @@ export function ProfessionalIdentity() {
           <Reveal>
             <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#FABD04] shadow-2xl mb-6 ring-4 ring-[#FABD04]/20">
               <Image
-                src="/images/ronney-menezes-portrait.jpg"
+                src="/images/ronney-menezes-portrait.webp"
                 alt={professional.name}
                 fill
                 sizes="(max-width: 640px) 96px, 112px"

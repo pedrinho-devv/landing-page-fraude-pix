@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { LeadSubmissionPayload, LeadSubmissionResponse } from "./lead-schema";
 
 // Simple in-memory storage for idempotency in serverless/Node environment
@@ -122,7 +123,7 @@ export async function deliverLeadToDestination(
     }
 
     // Development mock
-    const mockId = `mock-lead-${Date.now()}`;
+    const mockId = `mock-lead-${randomUUID()}`;
     console.info(`[Lead Delivery Dev Mock] Lead received successfully in dev mode (${mockId})`);
 
     const result: LeadSubmissionResponse = {
@@ -164,7 +165,7 @@ export async function deliverLeadToDestination(
         submittedAt: new Date().toISOString(),
       }),
       signal: controller.signal,
-    });
+    }).finally(() => clearTimeout(timeoutId));
 
     clearTimeout(timeoutId);
 
@@ -177,7 +178,7 @@ export async function deliverLeadToDestination(
       };
     }
 
-    const leadId = `lead-${Date.now()}`;
+    const leadId = `lead-${randomUUID()}`;
     const result: LeadSubmissionResponse = {
       success: true,
       leadId,

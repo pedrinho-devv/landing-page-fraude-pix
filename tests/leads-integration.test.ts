@@ -127,3 +127,22 @@ test("Rate Limit Checker", () => {
   const rejected = checkRateLimit(testIp);
   assert.equal(rejected, false);
 });
+
+test("Webhook errors must never report a successful registration", async () => {
+  const originalFetch = globalThis.fetch;
+  process.env.LEAD_WEBHOOK_URL = "https://crm.example.test/leads";
+  const payload = { fullName: "Teste Webhook", companyName: "Empresa Teste", phone: "11987654321", companyRole: "Outro" as const, lossRange: "Ainda não sei" as const, bankContacted: "Ainda não" as const };
+  try {
+    globalThis.fetch = async () => new Response("Unavailable", { status: 503 });
+    const failed = await deliverLeadToDestination(payload, "failed-webhook");
+    assert.equal(failed.success, false);
+    assert.equal(checkIdempotency("failed-webhook"), null);
+    globalThis.fetch = async () => new Response("ok", { status: 200 });
+    const retry = await deliverLeadToDestination(payload, "failed-webhook");
+    assert.equal(retry.success, true);
+    assert.ok(checkIdempotency("failed-webhook"));
+  } finally {
+    globalThis.fetch = originalFetch;
+    delete process.env.LEAD_WEBHOOK_URL;
+  }
+});

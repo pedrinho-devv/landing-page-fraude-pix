@@ -28,9 +28,9 @@ export const landingContent = {
     titleHighlight: "golpe via Pix",
     titleSuffix: " com prejuízo a partir de R$ 10 mil?",
     support:
-      "Entenda quais elementos precisam ser analisados para avaliar a responsabilidade da instituição financeira e a possibilidade de buscar reparação.",
+      "Conte o que aconteceu e receba o retorno da equipe do Dr. Ronney com uma avaliação de viabilidade do seu caso.",
     complement:
-      "A análise considera as características da transação, os mecanismos de segurança e os documentos disponíveis em cada caso.",
+      "Comece com seu nome e WhatsApp. Depois, perguntas rápidas ajudam a equipe a entender a situação da sua empresa.",
     audienceLine:
       "Atendimento a empresas e empresários · Avaliação individual de viabilidade",
     cta: "Solicitar análise de viabilidade",
@@ -42,45 +42,12 @@ export const landingContent = {
     introduction:
       "A avaliação de uma fraude bancária exige entender o que aconteceu, examinar os documentos e identificar os fundamentos aplicáveis ao caso.",
     steps: [
-      {
-        number: "01",
-        title: "Entendimento da operação.",
-        description:
-          "Levantamento do perfil da empresa, das circunstâncias da fraude e do padrão de movimentação da conta.",
-      },
-      {
-        number: "02",
-        title: "Exame dos mecanismos de segurança.",
-        description:
-          "Análise dos indícios de falha na prevenção, no monitoramento ou no tratamento da transação suspeita.",
-      },
-      {
-        number: "03",
-        title: "Organização dos documentos.",
-        description:
-          "Conferência de comprovantes do Pix, extratos, boletim de ocorrência e registros de comunicação com o banco, conforme o caso.",
-      },
-      {
-        number: "04",
-        title: "Avaliação de viabilidade.",
-        description:
-          "Exame do conjunto de provas e dos fundamentos jurídicos antes da recomendação de medidas.",
-      },
-      {
-        number: "05",
-        title: "Definição da estratégia.",
-        description:
-          "Quando houver viabilidade e contratação, definição das medidas adequadas, inclusive eventual ação judicial.",
-      },
-      {
-        number: "06",
-        title: "Acompanhamento do caso.",
-        description:
-          "Havendo contratação, acompanhamento das etapas pertinentes e comunicação sobre os desdobramentos.",
-      },
+      { number: "01", title: "Você conta o que aconteceu.", description: "Informe seu contato e responda a perguntas rápidas sobre a fraude envolvendo sua empresa." },
+      { number: "02", title: "Analisamos as informações e os documentos.", description: "A equipe orienta quais comprovantes e protocolos são necessários para avaliar seu caso." },
+      { number: "03", title: "Você recebe a avaliação de viabilidade.", description: "Entenda os caminhos possíveis e os próximos passos, antes de decidir sobre eventual contratação." },
     ] as StepItem[],
     postscript:
-      "As etapas 5 e 6 dependem de viabilidade e contratação prévia. Cada caso possui particularidades que demandam análise individualizada.",
+      "Eventuais medidas administrativas ou judiciais dependem de análise individual e contratação prévia.",
   },
   audience: {
     label: "PERFIL DE ATENDIMENTO",
@@ -153,7 +120,7 @@ export const landingContent = {
     label: "SOLICITAÇÃO DE CONTATO",
     title: "Solicite a análise jurídica do seu caso.",
     support:
-      "Informe seus dados de contato e responda a três perguntas sobre a situação da empresa. Ao enviar, você será direcionado para o WhatsApp com os dados estruturados para atendimento.",
+      "Deixe seu nome e WhatsApp. Depois, perguntas rápidas ajudam o Dr. Ronney a avaliar seu caso.",
     fields: {
       fullName: {
         label: "Nome completo",
@@ -202,10 +169,10 @@ export const landingContent = {
     },
     privacyNotice:
       "Usaremos as informações para responder à sua solicitação, conforme a Política de Privacidade.",
-    submitButton: "Enviar e abrir no WhatsApp",
-    submittingButton: "Preparando mensagem…",
+    submitButton: "Enviar meu caso para análise",
+    submittingButton: "Enviando solicitação…",
     whatsappRedirectNote:
-      "Ao clicar, seus dados serão organizados e você será direcionado para o WhatsApp oficial do Dr. Ronney Menezes (86 98157-2651).",
+      "Após a confirmação do envio, a equipe poderá entrar em contato pelo WhatsApp informado.",
     successMessage:
       "Solicitação recebida. A equipe poderá entrar em contato pelo canal informado para orientar os próximos passos. O envio não constitui contratação nem garante a viabilidade do caso.",
     errorMessage:
@@ -250,7 +217,7 @@ export const landingContent = {
         number: "03",
         title: "Separação de provas e documentos",
         description:
-          "Caso o caso apresente viabilidade inicial, você receberá orientações específicas sobre como reunir e organizar comprovantes, protocolos e boletins.",
+          "Se o caso apresentar viabilidade inicial, você receberá orientações específicas sobre como reunir e organizar comprovantes, protocolos e boletins.",
       },
     ],
     documentsSection: {

@@ -38,7 +38,8 @@ export const leadFormSchema = z.object({
     .trim()
     .min(10, "Informe um número de telefone ou WhatsApp válido com DDD.")
     .max(25, "Número de telefone inválido.")
-    .regex(/^[0-9+()\s.-]+$/, "Formato de telefone inválido."),
+    .regex(/^[0-9+()\s.-]+$/, "Formato de telefone inválido.")
+    .refine(value => { const digits = value.replace(/\D/g, ""); return /^(?:55)?[1-9][0-9][0-9]{8,9}$/.test(digits); }, "Informe um número válido com DDD."),
   email: z
     .string()
     .trim()

@@ -1,4 +1,5 @@
 import React from "react";
+import { LeadForm } from "@/components/forms/LeadForm";
 import { Container } from "@/components/ui/Container";
 import { PrimaryLink } from "@/components/ui/PrimaryLink";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
@@ -14,17 +15,17 @@ export function Hero({ videoUrl, posterUrl }: HeroProps) {
   const hasVideo = Boolean(videoUrl);
 
   return (
-    <section className="relative pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 bg-[#000044] text-[#FEFEFE] border-b border-[#FEFEFE]/10">
+    <section className="relative pt-6 pb-10 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 bg-[#000044] text-[#FEFEFE] border-b border-[#FEFEFE]/10">
       <Container>
         <div
           className={`grid items-center gap-10 lg:gap-12 ${
-            hasVideo ? "lg:grid-cols-[1.2fr_1fr]" : "max-w-4xl mx-auto"
+            "lg:grid-cols-[1.2fr_1fr]"
           }`}
         >
           {/* Main Copy Column */}
           <div className="flex flex-col items-start text-left">
             {/* Tag / Category Badge */}
-            <span className="inline-block text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#FABD04] mb-4 py-1 px-2.5 rounded bg-[#FABD04]/10 border border-[#FABD04]/30">
+            <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#FABD04] mb-4">
               {hero.label}
             </span>
 
@@ -43,12 +44,12 @@ export function Hero({ videoUrl, posterUrl }: HeroProps) {
             </p>
 
             {/* Complement Paragraph */}
-            <p className="reading-body text-[#FEFEFE]/75 text-sm sm:text-base mb-6">
+            <p className="hidden sm:block reading-body text-[#FEFEFE]/75 text-sm sm:text-base mb-6">
               {hero.complement}
             </p>
 
             {/* Target Audience Notice */}
-            <div className="w-full flex items-center gap-2 py-3 px-4 rounded-lg bg-[#FEFEFE]/5 border border-[#FEFEFE]/10 mb-8 text-xs sm:text-sm text-[#FEFEFE]/90">
+            <div className="hidden sm:flex w-full items-center gap-2 py-3 px-4 rounded-lg bg-[#FEFEFE]/5 border border-[#FEFEFE]/10 mb-8 text-xs sm:text-sm text-[#FEFEFE]/90">
               <span
                 className="w-2 h-2 rounded-full bg-[#FABD04] shrink-0"
                 aria-hidden="true"
@@ -67,11 +68,13 @@ export function Hero({ videoUrl, posterUrl }: HeroProps) {
                 {hero.cta}
               </PrimaryLink>
 
-              <p className="text-xs text-[#FEFEFE]/65 max-w-md">
+              <p className="hidden sm:block text-xs text-[#FEFEFE]/65 max-w-md">
                 {hero.note}
               </p>
             </div>
           </div>
+
+          <div id="analise" className="anchor-section w-full"><LeadForm /></div>
 
           {/* Video Player Column (Only rendered if videoUrl is configured) */}
           {hasVideo && (

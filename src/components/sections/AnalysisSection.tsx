@@ -37,10 +37,10 @@ export function AnalysisSection() {
               <div className="p-5 rounded-xl bg-[#FEFEFE]/5 border border-[#FEFEFE]/15 text-xs sm:text-sm text-[#FEFEFE]/80 space-y-3">
                 <div className="flex items-center gap-2 font-semibold text-[#FABD04]">
                   <span className="w-2 h-2 rounded-full bg-[#FABD04]" />
-                  <span>Critérios da Triagem Jurídica</span>
+                  <span>Para avaliar seu caso</span>
                 </div>
                 <p>
-                  As informações fornecidas não produzem negativa jurídica automática. Nossa equipe examina o histórico relatado para orientar os próximos passos viáveis.
+                  Conte o que aconteceu. Nossa equipe avalia as informações e orienta os próximos passos possíveis.
                 </p>
               </div>
             </Reveal>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { leadFormSchema, type LeadFormData, companyRoleOptions, lossRangeOptions, bankContactedOptions } from "@/lib/lead-schema";
@@ -10,7 +9,8 @@ import { trackEvent } from "@/lib/analytics";
 import { landingContent } from "@/content/landing";
 
 export function LeadForm() {
-  const router = useRouter();
+  const confirmationTab = useRef<Window | null>(null);
+  const [submitted, setSubmitted] = useState(false);
   const { form } = landingContent;
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
@@ -42,14 +42,28 @@ export function LeadForm() {
       await sendToWeb3Forms(data);
       sessionStorage.setItem(CONFIRMATION_KEY, JSON.stringify({ leadId: key.current, expires: Date.now() + 3600000 }));
       trackEvent({ name: "form_submit_success" });
-      router.push("/obrigado");
+      const target = confirmationTab.current;
+      if (target && !target.closed) {
+        target.sessionStorage.setItem(CONFIRMATION_KEY, sessionStorage.getItem(CONFIRMATION_KEY)!);
+        target.opener = null;
+        target.location.replace("/obrigado");
+      }
+      setSubmitted(true);
+      requestAnimationFrame(() => document.getElementById("analise")?.scrollIntoView({ block: "start" }));
     } catch (cause) {
+      confirmationTab.current?.close();
       setError(cause instanceof Error ? cause.message : form.errorMessage);
       trackEvent({ name: "form_submit_error", properties: { category: "server" } });
     } finally {
       busy.current = false;
     }
   }
+
+  if (submitted) return <div role="status" className="rounded-2xl bg-white p-6 text-[#000044]">
+    <h2 className="text-2xl font-bold mb-3">Solicitação enviada com sucesso!</h2>
+    <p className="mb-4">Confira os próximos passos na página de obrigado. Se ela não abriu em outra aba, use o botão abaixo.</p>
+    <a href="/obrigado" className="inline-flex min-h-12 items-center rounded-lg bg-[#FABD04] px-5 py-3 font-bold">Abrir página de obrigado</a>
+  </div>;
 
   const inputClass = "w-full min-h-12 rounded-lg border border-[#000044]/30 bg-white px-3 py-3 text-base text-[#000044] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#000044]";
   function field(name: "fullName" | "phone" | "companyName" | "email", type = "text") {
@@ -75,7 +89,14 @@ export function LeadForm() {
     <h2 className="text-2xl font-bold mb-2">{step === 1 ? "Conte com uma avaliação do seu caso." : "Agora, conte um pouco sobre a empresa."}</h2>
     <p className="text-sm text-[#000044]/75 mb-5">{step === 1 ? "Comece com seu nome e WhatsApp. Na próxima etapa, informe os detalhes da ocorrência." : "Estas informações ajudam a equipe a orientar os próximos passos."}</p>
     {error && <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-800">{error} Seus dados continuam preenchidos.</p>}
-    <form noValidate className="space-y-4" onFocus={() => { if (!started.current) { started.current = true; trackEvent({name: "form_start"}); } }} onSubmit={event => { if (step === 1) { event.preventDefault(); void next(); } else { void handleSubmit(submit)(event); } }}>
+    <form noValidate className="space-y-4" onFocus={() => { if (!started.current) { started.current = true; trackEvent({name: "form_start"}); } }} onSubmit={event => { if (step === 1) { event.preventDefault(); void next(); } else { if (busy.current || isSubmitting) { event.preventDefault(); return; }
+        // Reserve the tab inside the user gesture, before asynchronous validation/network.
+        confirmationTab.current = window.open("about:blank", "_blank");
+        if (confirmationTab.current) {
+          confirmationTab.current.document.title = "Enviando solicitação…";
+          confirmationTab.current.document.body.textContent = "Enviando sua solicitação. Aguarde a confirmação…";
+        }
+        void handleSubmit(submit, () => confirmationTab.current?.close())(event); } }}>
       <div className="sr-only" aria-hidden="true"><label htmlFor="website_trap">Não preencha este campo</label><input {...register("website_trap")} id="website_trap" tabIndex={-1} autoComplete="off" /></div>
       <fieldset hidden={step !== 1} className="space-y-4"><legend className="sr-only">Seu contato</legend>{field("fullName")}{field("phone", "tel")}</fieldset>
       <fieldset hidden={step !== 2} className="space-y-4"><legend className="sr-only">Para avaliar seu caso</legend>{field("companyName")}{field("email", "email")}{select("companyRole", companyRoleOptions)}{select("lossRange", lossRangeOptions)}{select("bankContacted", bankContactedOptions)}</fieldset>
